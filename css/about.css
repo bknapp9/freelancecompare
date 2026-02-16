@@ -1,0 +1,171 @@
+/* ── About Page Styles ── */
+
+/* Hero — shorter padding for subpages */
+.hero--short {
+  padding: 60px 0 64px;
+}
+.hero--short h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+}
+.hero--short p.subtitle {
+  max-width: 640px;
+  margin-bottom: 0;
+}
+
+/* ── Prose / Story Section ── */
+.prose {
+  max-width: 700px;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--gray-600);
+}
+.prose p {
+  margin-bottom: 20px;
+}
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── How It Works Cards ── */
+.how-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.how-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  transition: transform .25s, box-shadow .25s;
+}
+.how-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.how-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.how-card-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--green-dark);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.how-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+.how-card p {
+  font-size: .9rem;
+  color: var(--gray-500);
+  line-height: 1.65;
+}
+
+/* ── Methodology List ── */
+.method-list {
+  max-width: 700px;
+  list-style: none;
+  counter-reset: method;
+}
+.method-list li {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  font-size: .95rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+}
+.method-list li::before {
+  counter-increment: method;
+  content: counter(method);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-size: .78rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.method-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Transparency Note ── */
+.transparency-text {
+  max-width: 700px;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--gray-300);
+}
+
+/* ── CTA Banner ── */
+.cta-banner {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.cta-banner p {
+  font-size: 1.05rem;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 16px 36px;
+  background: var(--green);
+  color: var(--navy);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.cta-btn:hover {
+  background: #0EA472;
+  transform: translateY(-2px);
+}
+
+/* ── Active Footer Link ── */
+.footer-links a.active {
+  color: var(--white);
+}
+
+/* ── Active Nav Link ── */
+nav a.nav-active {
+  color: var(--white);
+  background: rgba(255,255,255,.07);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .how-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .how-cards {
+    grid-template-columns: 1fr;
+  }
+  .hero--short {
+    padding: 48px 0 52px;
+  }
+}

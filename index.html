@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Fee Calculator — Compare Upwork vs Fiverr vs Freelancer Fees (2026)</title>
+<meta name="description" content="Free calculator to compare freelance platform fees. See exactly how much you keep on Upwork, Fiverr, Freelancer.com, Contra, Toptal & more. Updated for 2026.">
+<meta property="og:title" content="Freelance Fee Calculator — Compare Platform Fees Side by Side">
+<meta property="og:description" content="See exactly how much you keep on Upwork, Fiverr, Freelancer.com, Contra, Toptal, PeoplePerHour & Guru. Free instant calculator updated for 2026.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freelancecompare.com">
+<meta property="og:image" content="https://freelancecompare.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/stats.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FreelanceCompare — Freelance Fee Calculator",
+  "description": "Compare freelance platform fees side by side. See your real take-home pay on Upwork, Fiverr, Freelancer.com, Contra, Toptal, PeoplePerHour and Guru.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "browserRequirements": "Requires JavaScript"
+}
+</script>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Freelance<span>Compare</span></a>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav">
+      <a href="#calculator">Calculator</a>
+      <a href="#annual">Annual Impact</a>
+      <a href="#breakeven">Break-Even</a>
+      <a href="#market-stats">Market Stats</a>
+      <a href="#faq">FAQ</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero + Calculator ── -->
+<section class="hero" id="calculator">
+  <div class="container">
+    <div class="hero-label">Free Tool — No Sign-Up Required</div>
+    <h1>See What You <span class="accent">Actually Keep</span><br>on Every Freelance Platform</h1>
+    <p class="subtitle">Enter a project amount and instantly compare fees across 7 major platforms. No guesswork — just real numbers.</p>
+
+    <div class="calc-input-group">
+      <div class="amount-wrapper">
+        <span class="prefix">$</span>
+        <input type="text" class="amount-input" id="project-amount" placeholder="Enter project amount" inputmode="decimal" aria-label="Project amount in dollars">
+      </div>
+      <div class="toggle-group">
+        <button class="toggle-btn active" data-type="fixed" id="btn-fixed">Fixed Price</button>
+        <button class="toggle-btn" data-type="hourly" id="btn-hourly">Hourly</button>
+      </div>
+    </div>
+    <div class="quick-amounts">
+      <button class="quick-btn" data-amount="100">$100</button>
+      <button class="quick-btn" data-amount="500">$500</button>
+      <button class="quick-btn" data-amount="1000">$1,000</button>
+      <button class="quick-btn" data-amount="2500">$2,500</button>
+      <button class="quick-btn" data-amount="5000">$5,000</button>
+      <button class="quick-btn" data-amount="10000">$10,000</button>
+    </div>
+
+    <div class="cards-grid" id="cards-grid"></div>
+  </div>
+</section>
+
+<!-- ── Annual Impact ── -->
+<section class="section section-dark" id="annual">
+  <div class="container">
+    <div class="section-label">Annual Impact</div>
+    <h2>How Much Do Fees Cost You Per Year?</h2>
+    <p class="section-desc">Small percentages add up fast. See the real annual cost of each platform's fee structure.</p>
+
+    <div class="annual-inputs">
+      <div class="input-group">
+        <label for="monthly-income">Estimated monthly income ($)</label>
+        <input type="text" id="monthly-income" placeholder="e.g. 3000" inputmode="decimal">
+      </div>
+      <div class="input-group">
+        <label for="monthly-projects">Average projects per month</label>
+        <input type="text" id="monthly-projects" placeholder="e.g. 4" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="annual-summary" id="annual-summary">
+      Enter your estimated monthly income above to see the annual fee comparison.
+    </div>
+
+    <div class="bar-chart" id="annual-chart"></div>
+  </div>
+</section>
+
+<!-- ── Break-Even ── -->
+<section class="section" id="breakeven">
+  <div class="container">
+    <div class="section-label">Break-Even Calculator</div>
+    <h2>What Should You Charge to Earn the Same?</h2>
+    <p class="section-desc">Different fees mean you need different rates. Find out how much to charge on each platform to match your target take-home.</p>
+
+    <div class="breakeven-grid">
+      <div class="breakeven-card">
+        <h3>I want to take home this amount:</h3>
+        <div class="input-group" style="margin-bottom:0">
+          <input type="text" id="be-target" placeholder="e.g. 1000" inputmode="decimal">
+        </div>
+      </div>
+      <div class="breakeven-card">
+        <h3>You'd need to charge:</h3>
+        <div id="be-results"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Market Overview ── -->
+<section class="section" id="market-stats">
+  <div class="container">
+    <div class="section-label">2026 Industry Data</div>
+    <h2>Freelance Platform Market Overview</h2>
+    <p class="section-desc">Understanding platform size and popularity helps you choose where to invest your time. Bigger isn't always better — but knowing the landscape matters.</p>
+
+    <!-- Part 1: Platform Popularity -->
+    <h3 style="font-size:1.15rem;margin-bottom:28px;">Platform Popularity Ranking</h3>
+
+    <div class="popularity-chart">
+      <div class="pop-bar-item">
+        <div class="pop-bar-top">
+          <div class="pop-bar-name">Upwork</div>
+          <div class="pop-bar-track">
+            <div class="pop-bar-fill" data-width="100" style="background:#14A800">
+              <span class="pop-bar-metric">18M+ freelancers · 796K clients</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-bar-subtitle">Market leader with 61% market share · $4B+ annual GMV · 34.4M monthly visits</div>
+      </div>
+
+      <div class="pop-bar-item">
+        <div class="pop-bar-top">
+          <div class="pop-bar-name">Freelancer.com</div>
+          <div class="pop-bar-track">
+            <div class="pop-bar-fill" data-width="85" style="background:#29B2FE">
+              <span class="pop-bar-metric">64M+ registered · 247 countries</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-bar-subtitle">Largest registered user base · 53 regional sites · 34 languages</div>
+      </div>
+
+      <div class="pop-bar-item">
+        <div class="pop-bar-top">
+          <div class="pop-bar-name">Fiverr</div>
+          <div class="pop-bar-track">
+            <div class="pop-bar-fill" data-width="65" style="background:#1DBF73">
+              <span class="pop-bar-metric">380K sellers · 3.5M buyers</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-bar-subtitle">Gig-based marketplace · 80M+ monthly visitors · $1.1B GMV</div>
+      </div>
+
+      <div class="pop-bar-item">
+        <div class="pop-bar-top">
+          <div class="pop-bar-name">Guru</div>
+          <div class="pop-bar-track">
+            <div class="pop-bar-fill" data-width="40" style="background:#5BA028">
+              <span class="pop-bar-metric">3M+ freelancers · 800K+ employers</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-bar-subtitle">Lower fees (5-9%) · SafePay escrow · $250M+ total platform earnings</div>
+      </div>
+
+      <div class="pop-bar-item">
+        <div class="pop-bar-top">
+          <div class="pop-bar-name">PeoplePerHour</div>
+          <div class="pop-bar-track">
+            <div class="pop-bar-fill" data-width="35" style="background:#F7A600">
+              <span class="pop-bar-metric">3M+ freelancers · 1K+ employers</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-bar-subtitle">UK/European focus · Tiered fees that decrease with volume</div>
+      </div>
+
+      <div class="pop-bar-item">
+        <div class="pop-bar-top">
+          <div class="pop-bar-name">Toptal</div>
+          <div class="pop-bar-track">
+            <div class="pop-bar-fill" data-width="25" style="background:#204ECF">
+              <span class="pop-bar-metric">Top 3% · ~10K freelancers</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-bar-subtitle">Elite network · Premium rates ($200+/hr to clients) · Rigorous 5-stage vetting</div>
+      </div>
+
+      <div class="pop-bar-item">
+        <div class="pop-bar-top">
+          <div class="pop-bar-name">Contra</div>
+          <div class="pop-bar-track">
+            <div class="pop-bar-fill" data-width="20" style="background:#1E1E1E">
+              <span class="pop-bar-metric">0% fees · Growing community</span>
+            </div>
+          </div>
+        </div>
+        <div class="pop-bar-subtitle">Zero commission · Freelancers keep 100% · Smaller but growing client pool</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Most In-Demand Categories ── -->
+<section class="stats-subsection-gray">
+  <div class="container">
+    <div class="section-label">Top Categories</div>
+    <h2 style="font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:12px;">Most In-Demand Freelance Categories</h2>
+    <p class="section-desc">Where the work is — and what it pays.</p>
+
+    <div class="category-grid">
+      <div class="category-card">
+        <div class="cat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h4>Web, Mobile &amp; Software Dev</h4>
+        <div class="cat-bar-track"><div class="cat-bar-fill" data-width="34"></div></div>
+        <div class="cat-bar-labels"><span class="cat-pct">34%</span><span class="cat-pct-label">of platform work</span></div>
+        <div class="cat-stat">Highest category on Upwork · $13–$324/hr range</div>
+      </div>
+
+      <div class="category-card">
+        <div class="cat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E879A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><path d="M17 2h4v4"/><path d="M2 17l5.5-5.5"/><path d="M17 2l-9.5 9.5"/><circle cx="6.5" cy="13.5" r="2.5"/><path d="M7 22h4v-4"/><path d="M22 7l-5.5 5.5"/></svg>
+        </div>
+        <h4>Design &amp; Creative</h4>
+        <div class="cat-bar-track"><div class="cat-bar-fill" data-width="18"></div></div>
+        <div class="cat-bar-labels"><span class="cat-pct">18%</span><span class="cat-pct-label">of platform work</span></div>
+        <div class="cat-stat">Graphic designers earn $15–$150/hr · Stable demand</div>
+      </div>
+
+      <div class="category-card">
+        <div class="cat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93"/><path d="M8 6a4 4 0 0 1 3.25 1.93"/><circle cx="12" cy="14" r="4"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>
+        </div>
+        <h4>AI &amp; Machine Learning</h4>
+        <div class="cat-bar-track"><div class="cat-bar-fill" data-width="12"></div></div>
+        <div class="cat-bar-labels"><span class="cat-pct">12%</span><span class="cat-pct-label">of platform work</span></div>
+        <div class="cat-stat">+60% revenue growth YoY · Fastest growing category</div>
+      </div>
+
+      <div class="category-card">
+        <div class="cat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>
+        </div>
+        <h4>Writing &amp; Content</h4>
+        <div class="cat-bar-track"><div class="cat-bar-fill" data-width="12"></div></div>
+        <div class="cat-bar-labels"><span class="cat-pct">12%</span><span class="cat-pct-label">of platform work</span></div>
+        <div class="cat-stat">Writers earn $10–$100/hr · AI content editing surging</div>
+      </div>
+
+      <div class="category-card">
+        <div class="cat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="18 9 12 15 9 12 3 18"/></svg>
+        </div>
+        <h4>Admin &amp; Customer Support</h4>
+        <div class="cat-bar-track"><div class="cat-bar-fill" data-width="10"></div></div>
+        <div class="cat-bar-labels"><span class="cat-pct">10%</span><span class="cat-pct-label">of platform work</span></div>
+        <div class="cat-stat">Growing remote support demand · Entry-friendly</div>
+      </div>
+
+      <div class="category-card">
+        <div class="cat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h4>Digital Marketing &amp; Sales</h4>
+        <div class="cat-bar-track"><div class="cat-bar-fill" data-width="9"></div></div>
+        <div class="cat-bar-labels"><span class="cat-pct">9%</span><span class="cat-pct-label">of platform work</span></div>
+        <div class="cat-stat">Video marketing avg $18K/project · SEO always in demand</div>
+      </div>
+
+      <div class="category-card">
+        <div class="cat-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 010-4h14v4"/><path d="M3 5v14a2 2 0 002 2h16v-5"/><path d="M18 12a2 2 0 000 4h4v-4z"/></svg>
+        </div>
+        <h4>Data Science &amp; Analytics</h4>
+        <div class="cat-bar-track"><div class="cat-bar-fill" data-width="5"></div></div>
+        <div class="cat-bar-labels"><span class="cat-pct">5%</span><span class="cat-pct-label">of platform work</span></div>
+        <div class="cat-stat">14.2% of tech freelancers · Python +50% demand</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Fastest Growing Skills ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Trending in 2026</div>
+    <h2>Fastest Growing Skills</h2>
+    <p class="section-desc">The skills seeing the biggest spike in demand across freelance platforms right now.</p>
+
+    <div class="skills-wrap">
+      <div class="skill-pill">AI Consulting <span class="skill-growth">+650%</span></div>
+      <div class="skill-pill">Blockchain / Ethereum <span class="skill-growth">+335%</span></div>
+      <div class="skill-pill">Prompt Engineering <span class="skill-growth">+93%</span></div>
+      <div class="skill-pill">Machine Learning <span class="skill-growth">+70%</span></div>
+      <div class="skill-pill">Python <span class="skill-growth">+50%</span></div>
+      <div class="skill-pill">Rust <span class="skill-growth">+50%</span></div>
+      <div class="skill-pill">Julia <span class="skill-growth">+50%</span></div>
+      <div class="skill-pill">Video Marketing <span class="skill-growth">Avg $18K/project</span></div>
+      <div class="skill-pill">Data Analysis <span class="skill-growth">14.2% of tech freelancers</span></div>
+      <div class="skill-pill">Cybersecurity <span class="skill-growth">Rising demand</span></div>
+    </div>
+
+    <div class="stats-source">
+      Sources: Upwork Q2 2025 Report, Fiverr Annual Report 2024, DemandSage, Statista Global Gig Economy Report, Mordor Intelligence. Data compiled February 2026.
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section" id="faq" style="background:var(--gray-100)">
+  <div class="container">
+    <div class="section-label">Frequently Asked Questions</div>
+    <h2>Common Questions About Freelance Fees</h2>
+    <p class="section-desc">Everything you need to know about platform fees, hidden costs, and maximizing your earnings.</p>
+
+    <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-question" itemprop="name">Which freelance platform has the lowest fees?</button>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Contra and Toptal charge 0% commission to freelancers, making them the cheapest platforms fee-wise. However, Toptal is extremely selective (top 3% of applicants) and Contra has a smaller client pool. Among mainstream platforms, Guru (5–9%) and Upwork (10%) generally offer better rates than Fiverr (20%) or PeoplePerHour (up to 20%).</p>
+        </div>
+      </div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-question" itemprop="name">How much does Fiverr take from sellers?</button>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Fiverr takes a flat 20% from every order. So if a client pays $100, you receive $80. On top of that, buyers pay a 5.5% service fee, and orders under $75 incur an additional $2.50 small order fee. Withdrawal fees range from free (PayPal) to $3 (Fiverr Revenue Card).</p>
+        </div>
+      </div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-question" itemprop="name">What is Upwork's service fee in 2026?</button>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">As of 2026, Upwork charges freelancers a flat 10% service fee on all earnings. Clients pay an additional 5% marketplace fee plus up to $4.95 as a contract initiation fee. Freelancers also spend on Connects ($0.15–$0.90 each) to submit proposals, typically needing 4–6 per application.</p>
+        </div>
+      </div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-question" itemprop="name">Are Contra and Toptal really free for freelancers?</button>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes — both platforms charge 0% commission to freelancers. Contra is free to join and use, with clients covering invoice processing fees. Toptal is also free for accepted freelancers, but the platform is extremely selective — only about 3% of applicants are accepted. Toptal takes its margin from the client side.</p>
+        </div>
+      </div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-question" itemprop="name">How do I calculate my real take-home pay as a freelancer?</button>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Start with the project amount, subtract the platform's freelancer service fee, then account for hidden costs like proposal fees (Upwork Connects), small order fees (Fiverr), and withdrawal fees. Use our calculator above to see the exact breakdown for each platform instantly.</p>
+        </div>
+      </div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-question" itemprop="name">Should I use multiple freelance platforms?</button>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Using multiple platforms can be a smart strategy. It diversifies your client sources and lets you optimize based on project type — for example, use a low-fee platform like Contra for larger projects and a high-traffic platform like Upwork for finding new clients. Just be sure to manage your time and profiles effectively.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-note">Fee data updated February 2026. Fees may change — always verify on official platform websites.</p>
+    <p class="footer-love">Built with &#9829; for freelancers worldwide</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/stats.js"></script>
+</body>
+</html>
